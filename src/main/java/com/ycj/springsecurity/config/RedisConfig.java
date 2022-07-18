@@ -1,10 +1,12 @@
 package com.ycj.springsecurity.config;
 
+import com.alibaba.fastjson2.support.spring.data.redis.GenericFastJsonJSONBRedisSerializer;
 import com.ycj.springsecurity.utils.FastJsonRedisSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
@@ -16,7 +18,9 @@ public class RedisConfig {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
 
-        FastJsonRedisSerializer serializer = new FastJsonRedisSerializer(Object.class);
+        // 不知道为什么这个不能序列化json
+        // FastJsonRedisSerializer serializer = new FastJsonRedisSerializer(Object.class);
+        GenericFastJsonJSONBRedisSerializer serializer = new GenericFastJsonJSONBRedisSerializer();
 
         // 使用StringRedisSerializer来序列化和反序列化redis的key值
         template.setKeySerializer(new StringRedisSerializer());

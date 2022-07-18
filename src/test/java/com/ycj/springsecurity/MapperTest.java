@@ -3,13 +3,16 @@ package com.ycj.springsecurity;
 import com.ycj.springsecurity.domain.User;
 import com.ycj.springsecurity.mapper.UserMapper;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class MapperTest {
 
     @Autowired
@@ -31,6 +34,6 @@ public class MapperTest {
     @Test
     public void testUserMapper() {
         List<User> users = userMapper.selectList(null);
-        System.out.println(users.size());
+        System.out.println(users);
     }
 }
