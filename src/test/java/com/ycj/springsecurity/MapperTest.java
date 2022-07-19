@@ -1,6 +1,7 @@
 package com.ycj.springsecurity;
 
 import com.ycj.springsecurity.domain.User;
+import com.ycj.springsecurity.mapper.MenuMapper;
 import com.ycj.springsecurity.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +22,9 @@ public class MapperTest {
 //    @Autowired
 //    private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private MenuMapper menuMapper;
+
     @Test
     public void TestBCryptPasswordEncoder() {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -35,5 +39,11 @@ public class MapperTest {
     public void testUserMapper() {
         List<User> users = userMapper.selectList(null);
         System.out.println(users);
+    }
+
+    @Test
+    public void testSelectPermsByUserId() {
+        List<String> list = menuMapper.selectPermsByUserId(2L);
+        System.out.println(list);
     }
 }
