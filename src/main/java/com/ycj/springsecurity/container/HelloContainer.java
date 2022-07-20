@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloContainer {
 
     @RequestMapping("/hello")
-    @PreAuthorize("hasAnyAuthority('test')")
+    @PreAuthorize("hasAnyAuthority('system:dept:list')")
     public String hello() {
         return "Hello SpringSecurity";
     }
